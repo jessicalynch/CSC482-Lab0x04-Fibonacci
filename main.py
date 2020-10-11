@@ -47,8 +47,9 @@ def main():
         exit()
 
     # Print table header
+    cols_per_func = 3  # Update if additional data columns are added
     col_width_full = 30
-    col_width_med = col_width_full // 3
+    col_width_med = col_width_full // cols_per_func
     col_width_small = 6
 
     # Function names (header top row)
@@ -66,7 +67,6 @@ def main():
         print(f"{expected_str:>{col_width_med}}", end="")
     print("\n")
 
-    cols_per_func = 3  # Update if additional data columns are added
 
     # Init flag to track when all functions are complete
     timed_out = False
