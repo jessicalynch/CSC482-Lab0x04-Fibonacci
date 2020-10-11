@@ -16,29 +16,14 @@ file_path = join(current_dir, file_name)
 sys.stdout = open(file_path, "w")
 
 
-def get_expected_dr(func_name, x):
-    """Returns the expected doubling ratio for each fibonacci function"""
-    if func_name == "fib_recur":  # Exponential time
-        phi = (1 + sqrt(5)) / 2
-        return (phi ** x) / (phi ** (x // 2))
-    elif func_name in ("fib_cache", "fib_loop"):  # Linear time
-        return x / (x // 2)  # or 2
-    elif func_name == "fib_matrix":  # Logarithmic time
-        x_size = len(fib.base10_to_binary(x))
-        if log(x_size // 2, 2) > 0:
-            return (log(x_size, 2)) / (log(x_size // 2, 2))
-        else:
-            return False
-
-
 def main():
     # Assign timer function to variable
     clock = perf_counter_ns
 
     # Determine max run time for each algorithm
     one_second = 1000000000  # 1 second in nanoseconds
-    # MAX_RUN_TIME = one_second * 60 * 10
-    MAX_RUN_TIME = one_second  # small value for testing
+    MAX_RUN_TIME = one_second * 60 * 10
+    # MAX_RUN_TIME = one_second  # small value for testing
     # MAX_NUMBER = sys.maxsize
     MAX_NUMBER = 25000
 
@@ -52,6 +37,14 @@ def main():
     fib_funcs = [fib.fib_recur, fib.fib_cache, fib.fib_loop, fib.fib_matrix]
     num_funcs = len(fib_funcs)
     timed_out_funcs = [False] * num_funcs
+
+    # Verify functions are accurate
+    verify = verification_tests(fib_funcs)
+    if verify:
+        print("<Functions verified>\n")
+    else:
+        print("<Inconsistent function results>")
+        exit()
 
     # Print table header
     col_width_full = 30
@@ -73,7 +66,7 @@ def main():
         print(f"{expected_str:>{col_width_med}}", end="")
     print("\n")
 
-    cols_per_func = 3
+    cols_per_func = 3  # Update if additional data columns are added
 
     # Init flag to track when all functions are complete
     timed_out = False
@@ -168,6 +161,31 @@ def main():
                 exit()
 
         print()
+
+
+def get_expected_dr(func_name, x):
+    """Returns the expected doubling ratio for each fibonacci function"""
+    if func_name == "fib_recur":  # Exponential time
+        phi = (1 + sqrt(5)) / 2
+        return (phi ** x) / (phi ** (x // 2))
+    elif func_name in ("fib_cache", "fib_loop"):  # Linear time
+        return x / (x // 2)  # or 2
+    elif func_name == "fib_matrix":  # Logarithmic time
+        if log(x // 2, 2) > 0:
+            return (log(x, 2)) / (log(x // 2, 2))
+        else:
+            return False
+
+
+def verification_tests(funcs):
+    """Verify consistent results from each function"""
+    fib_num = [-1] * len(funcs)
+    for x in range(1, 20):
+        for i in range(len(funcs)):
+            fib_num[i] = funcs[i](x)
+        if len(set(fib_num)) != 1:
+            return False
+    return True
 
 
 if __name__ == '__main__':
