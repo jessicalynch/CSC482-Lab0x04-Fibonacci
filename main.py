@@ -24,14 +24,7 @@ def main():
     one_second = 1000000000  # 1 second in nanoseconds
     MAX_RUN_TIME = one_second * 60 * 10
     # MAX_RUN_TIME = one_second  # small value for testing
-    # MAX_NUMBER = sys.maxsize
-    MAX_NUMBER = 25000
-
-    # Init string constants for table
-    t_str = "Time"
-    dr_str = "DR"
-    expected_str = "expected"
-    na_str = "--"
+    MAX_NUMBER = 100
 
     # Build list with functions to test
     fib_funcs = [fib.fib_recur, fib.fib_cache, fib.fib_loop, fib.fib_matrix]
@@ -46,19 +39,23 @@ def main():
         print("<Inconsistent function results>")
         exit()
 
-    # Print table header
+    # Init table variables
+    t_str = "Time"
+    dr_str = "DR"
+    expected_str = "expected"
+    na_str = "--"
     cols_per_func = 3  # Update if additional data columns are added
     col_width_full = 30
     col_width_med = col_width_full // cols_per_func
     col_width_small = 6
 
-    # Function names (header top row)
+    # Print function names (header top row)
     print(f"{'':>{col_width_small * 2}}", end="")
     for i in range(num_funcs):
         print(f"{fib_funcs[i].__name__:>{col_width_full}}", end="")
     print()
 
-    # Data columns (header second row)
+    # Print data columns (header second row)
     print(f"{'x':>{col_width_small}}", end="")
     print(f"{'size':>{col_width_small}}", end="")
     for i in range(num_funcs):
@@ -66,7 +63,6 @@ def main():
         print(f"{dr_str:>{col_width_med}}", end="")
         print(f"{expected_str:>{col_width_med}}", end="")
     print("\n")
-
 
     # Init flag to track when all functions are complete
     timed_out = False
