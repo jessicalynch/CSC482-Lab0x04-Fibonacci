@@ -17,3 +17,7 @@ A study of algorithms that return the xth value in the Fibonacci sequence.
 </pre>
 
 `main.py` outputs a [table of run times](https://raw.githubusercontent.com/jessicalynch/CSC482-Lab0x04-Fibonacci/main/output_1602601932669976000.txt) with increasing x values to a .txt file.
+
+
+* [Small output](https://raw.githubusercontent.com/jessicalynch/CSC482-Lab0x04-Fibonacci/main/output_1602601932669976000.txt) (10-min timeout per algorithm, 1 <= `x` <= 100)
+* [Large output](https://raw.githubusercontent.com/jessicalynch/CSC482-Lab0x04-Fibonacci/main/output_1602446678900365000.txt) (10-min timeout per algorithm, 1 <= `x` <= 25000)
