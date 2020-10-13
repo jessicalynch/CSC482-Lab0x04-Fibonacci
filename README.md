@@ -16,4 +16,4 @@ A study of algorithms that return the xth value in the Fibonacci sequence.
 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181
 </pre>
 
-`main.py` outputs a [table of run times](https://raw.githubusercontent.com/jessicalynch/CSC482-Lab0x04-Fibonacci/main/output_1602446678900365000.txt) with increasing x values to a .txt file.
+`main.py` outputs a [table of run times](https://raw.githubusercontent.com/jessicalynch/CSC482-Lab0x04-Fibonacci/main/output_1602601932669976000.txt) with increasing x values to a .txt file.
