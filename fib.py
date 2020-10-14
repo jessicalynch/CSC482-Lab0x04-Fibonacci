@@ -6,7 +6,7 @@ __author__ = "Jessica Lynch"
 # Global error messages
 errors = ["Sequence index must be 1 or greater",
           "Exponent must be positive",
-          "Integer must be positive"
+          "Integer must be positive",
           "Value must be integer"
           ]
 
